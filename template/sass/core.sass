@@ -1,71 +1,32 @@
+@import "var"
 
-.container 
-	background: #e2e2e2
-	width: 100%
-	margin: 0 auto
-	display: table
+body
+	font: 100%/1.5em Arial, Helvetica, sans-serif
+	color: #000
 
-.container .cols 
-	float: left
-	margin: 0 0 1em
-	padding: 0 1em
-	background: #fd4
-	text-align: center
+/* font-family =====================================================================*/
 
-.container .cols.col-1
-	width: 8.3%
+.domine-bold
+	font-family: 'Domine-Bold'
+.domine-regular
+	font-family: 'Raleway-Regular'
+.montserrat-bold
+	font-family: 'Montserrat-Bold'
+.montserrat-regular
+	font-family: 'Montserrat-Regular'
+.open-sans
+	font-family: 'Open-Sans'
+.open-sans-bold
+	font-family: 'Open-Sans-Bold'
+.open-sans-italic
+	font-family: 'Open-Sans-Italic'
+.open-sans-regular
+	font-family: 'Open-Sans-Regular'
+.open-sans-semibold
+	font-family: 'Open-Sans-Semibold'
+/* font-family END =====================================================================*/
 
-.container .cols.col-2
-	width: 16.6%
-
-.container .cols.col-3
-	width: 25%
-
-.container .cols.col-4
-	width: 33%
-
-.container .cols.col-5
-	width: 41%
-
-.container .cols.col-6
-	width: 50%
-
-.container .cols.col-7
-	width: 58.3%
-
-.container .cols.col-8
-	width: 66.6%
-
-.container .cols.col-9
-	width: 75%
-
-.container .cols.col-10
-	width: 83%
-
-.container .cols.col-11
-	width: 91%
-
-.container .cols.col-12
-	width: 100%
-
-html 
-	-webkit-box-sizing: border-box
-	-moz-box-sizing: border-box
-	box-sizing: border-box
-
-*, *:before, *:after 
-	-webkit-box-sizing: inherit
-	-moz-box-sizing: inherit
-	box-sizing: inherit
-
-.clearfix:before,
-.clearfix:after
-	content: ""
-	display: table
-.clearfix:after 
-	clear: both
-div, p, input, button, a 
-	box-sizing: border-box
+/* font-size  =====================================================================*/
 .f11px 
 	font-size: 11px
 .f12px 
@@ -165,6 +126,10 @@ div, p, input, button, a
 .f59px 
 	font-size: 59px
 
+/* font-size END =====================================================================*/
+
+/* decoration =====================================================================*/
+
 .white
 	color: #FFF
 .upper
@@ -177,3 +142,104 @@ div, p, input, button, a
 	float: left
 .righter
 	float: right
+.ulmnu
+	list-style-type: none
+	margin: 0
+	padding: 0
+.t-decoration
+	text-decoration: none
+.ulmnu
+	list-style-type: none
+	margin: 0
+	padding: 0
+	li
+		display: inline-block
+/* decoration END =====================================================================*/
+
+/* before after   =====================================================================*/
+
+.before
+	content: ''
+	width: 100%
+	height: 100%
+	position: absolute
+	left: 0
+	top: 0
+
+/* before after END  =====================================================================*/
+
+/* BUTTON TOOGLE =====================================================================*/
+
+#toggle 
+	display: block
+	position: relative
+    width: 30px
+    height: 30px
+    float: right
+
+#toggle span:after, #toggle span:before 
+	content: ""
+	position: absolute
+	left: 0
+	top: -9px
+
+#toggle span:after
+	top: 9px
+
+#toggle span 
+	position: relative
+	top: 11px
+	display: block
+	z-index: 10
+
+#toggle span, #toggle span:after, #toggle span:before 
+	width: 100%
+	height: 5px
+	background-color: #888
+	transition: all 0.3s
+	backface-visibility: hidden
+	border-radius: 2px
+
+/* on activation */
+#toggle.on
+	margin-top: 17px
+    margin-left: 15px
+#toggle.on span 
+	background-color: transparent
+
+#toggle.on span:before 
+	transform: rotate(45deg) translate(5px, 5px)
+
+#toggle.on span:after 
+	transform: rotate(-45deg) translate(7px, -8px)
+
+#toggle.on + #menu 
+	opacity: 1
+	visibility: visible
+
+#menu 
+	position: relative
+	color: #999
+	width: 200px
+	padding: 10px
+	margin: auto
+	font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif
+	text-align: center
+	border-radius: 4px
+	background: white
+	box-shadow: 0 1px 8px rgba(0,0,0,0.05)
+	opacity: 0
+	visibility: hidden
+	transition: opacity .4s
+
+#menu:after 
+	position: absolute
+	top: -15px
+	left: 95px
+	content: ""
+	display: block
+	border-left: 15px solid transparent
+	border-right: 15px solid transparent
+	border-bottom: 20px solid white
+
+/* BUTTON TOOGLE END =====================================================================*/

@@ -10,7 +10,8 @@ var gulp = require('gulp'),
 	imagemin = require('gulp-imagemin'), 
     pngquant = require('imagemin-pngquant'), 
     cache = require('gulp-cache'),
-    pug = require('gulp-pug'); 
+    pug = require('gulp-pug'),
+    Jimp = require('jimp'); 
 
 /* sass file convert to css file */
 
@@ -42,7 +43,10 @@ gulp.task('browser-sync',function(){
 	})
 })
 
+/* Compress img */
+
 gulp.task('img', function(){
+
 	return gulp.src('img/**/*')
 	.pipe(cache(imagemin({
 		interlaced:true,
@@ -51,7 +55,32 @@ gulp.task('img', function(){
 		une:[pngquant()]
 	})))
 	.pipe(gulp.dest('template/build/img/'))
+
 })
+
+/* slicing img */
+
+gulp.task('slice', function(){
+
+	fs.readdir(path, function(err, items) {
+	    console.log(items);
+	 
+	    for (var i=0; i<items.length; i++) {
+	        console.log(items[i]);
+	    }
+	});
+	
+	Jimp.read('main.jpg', function (err, lenna) {
+	if (err) throw err;
+    lenna.resize(250, 250)            // resize
+        .quality(100)                 // set JPEG quality
+        .write("lena-small-bw.jpg"); // save
+	});
+});
+
+gulp.task('manipulation',['slice', 'img'], function () {
+	console.log('manipulation successfully');
+});
 
 /*pug render file */
 
@@ -65,7 +94,7 @@ gulp.task('views', function buildHTML() {
 
 /* gulp watch file to change file */
 
-gulp.task('watch', ['browser-sync','sass', 'img', 'views'], function(){
+gulp.task('watch', ['browser-sync','sass', 'views'], function(){
 	gulp.watch('template/sass/**/*.sass',['sass']);
 	gulp.watch('template/*.html',browserSync.reload);
 	gulp.watch('template/js/**/*.js',browserSync.reload);
